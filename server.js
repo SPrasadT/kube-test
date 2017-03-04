@@ -1,4 +1,9 @@
-FROM node:6.9.2
-EXPOSE 8080
-COPY server.js .
-CMD node server.js
+var http = require('http');
+
+var handleRequest = function(request, response) {
+  console.log('Received request for URL: ' + request.url);
+  response.writeHead(200);
+  response.end('Hey, this is ver: 1');
+};
+var www = http.createServer(handleRequest);
+www.listen(8080);
